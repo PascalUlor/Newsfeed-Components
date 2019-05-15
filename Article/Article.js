@@ -24,9 +24,16 @@ class Article {
   addToggleButtonLabel() {
     this.expandButton.textContent = 'expand';
   }
+  deleteArticle(){
+    this.domElement.style.display = 'none';
+  }
   addButtonLabel() {
     this.button.textContent = 'Read';
     this.button.style.background = 'cyan';
+    this.button.addEventListener('click', ()=>{
+      this.deleteArticle();
+      console.log('delete');
+    })
   }
 
   toggleArticle(){
