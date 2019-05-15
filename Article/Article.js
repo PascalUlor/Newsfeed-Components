@@ -25,15 +25,21 @@ class Article {
     this.expandButton.textContent = 'expand';
   }
   deleteArticle(){
-    this.domElement.style.display = 'none';
+    this.domElement.classList.add('delete');
   }
   addButtonLabel() {
     this.button.textContent = 'Read';
     this.button.style.background = 'cyan';
     this.button.addEventListener('click', ()=>{
       this.deleteArticle();
+      TweenMax.to('.delete', .5, {
+        right: -1000,
+        display: 'none',
+        ease: Power0.easeOut
+      });
       console.log('delete');
     })
+      
   }
 
   toggleArticle(){
@@ -62,3 +68,14 @@ let articles = [...document.querySelectorAll('.article')];
 articles.forEach((article) => {
   new Article(article);
 })
+
+class PostArticle extends Article {
+  constructor(Attr){
+    super(Attr);
+    this.post = Attr.post;
+  }
+
+  addPost() {
+
+  }
+}
