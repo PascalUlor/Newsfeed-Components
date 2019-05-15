@@ -43,7 +43,10 @@
   cursor: pointer;
 }
 .menu {
-  display: none;
+  display: block;
+  max-width: 0px;
+  overflow: hidden;
+  transition: all 0.25s ease-in-out;
   position: fixed;
   top: 75px;
   left: 0;
@@ -64,7 +67,8 @@
   text-align: center;
 }
 .menu--open {
-  display: block;
+  max-width: 351px;
+  transition: all 0.25s ease-in-out;
 }
 /*Import Article.less
 */
