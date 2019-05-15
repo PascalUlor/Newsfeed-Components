@@ -17,9 +17,16 @@ class Article {
     this.addToggleButtonLabel();
     // this.toggleArticle();
     this.toggleArticle();
+    this.button = document.createElement('button');
+    this.addButtonLabel();
+    this.domElement.prepend(this.button);
   }
   addToggleButtonLabel() {
     this.expandButton.textContent = 'expand';
+  }
+  addButtonLabel() {
+    this.button.textContent = 'Read';
+    this.button.style.background = 'cyan';
   }
 
   toggleArticle(){
