@@ -68,7 +68,7 @@
 }
 .menu--open {
   max-width: 351px;
-  transition: all 0.25s ease-in-out;
+  transform: translateX(1px);
 }
 /*Import Article.less
 */

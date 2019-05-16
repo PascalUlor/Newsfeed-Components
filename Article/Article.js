@@ -17,21 +17,25 @@ class Article {
     this.addToggleButtonLabel();
     // this.toggleArticle();
     this.toggleArticle();
-    this.button = document.createElement('button');
-    this.addButtonLabel();
-    this.domElement.prepend(this.button);
+    // this.button = document.createElement('button');
+    this.addButtonLabel(this.domElement);
+    // this.domElement.prepend(this.button);
   }
   addToggleButtonLabel() {
+    // this.expandButton = this.domElement.querySelector('.expandButton');
     this.expandButton.textContent = 'expand';
   }
-  deleteArticle(){
-    this.domElement.classList.add('delete');
+  deleteArticle(domElement){
+    domElement.classList.add('delete');
   }
-  addButtonLabel() {
+  addButtonLabel(domElement) {
+    this.button = document.createElement('button');
+    domElement.prepend(this.button);
     this.button.textContent = 'Read';
     this.button.style.background = 'cyan';
+    this.button.style.margin = '0';
     this.button.addEventListener('click', ()=>{
-      this.deleteArticle();
+      this.deleteArticle(domElement);
       TweenMax.to('.delete', .5, {
         right: -1000,
         display: 'none',
@@ -63,19 +67,46 @@ articles variable.
 
 */
 
-let articles = [...document.querySelectorAll('.article')];
-// console.log(articles);
-articles.forEach((article) => {
-  new Article(article);
-})
+// let articles = [...document.querySelectorAll('.article')];
+// // console.log(articles);
+// articles.forEach((article) => {
+//   new Article(article);
+// })
+
 
 class PostArticle extends Article {
   constructor(Attr){
     super(Attr);
-    this.post = Attr.post;
+    this.post;
+    this.allArticles = document.querySelector('.articles')
   }
 
   addPost() {
-
+    this.post = document.createElement('div');
+    this.title = document.createElement('h1');
+    this.date = document.createElement('p');
+    this.writeUp = document.createElement('p');
+    this.dropDown = document.createElement('span');
+    this.dropDown.classList.add('expandButton');
+    this.title.textContent = 'New Article';
+    this.title.setAttribute("style", "margin: 0;");
+    this.date.textContent = 'my date';
+    this.writeUp.textContent = 'This is a demo writeup';
+    this.dropDown.textContent = 'expand';
+    this.post.classList.add('article');
+    this.date.classList.add('date');
+    this.allArticles.prepend(this.post);
+    this.addButtonLabel(this.post);
+    this.post.appendChild(this.title);
+    this.post.appendChild(this.date);
+    this.post.appendChild(this.writeUp);
+    this.post.appendChild(this.dropDown);
   }
 }
+
+let articles = [...document.querySelectorAll('.article')];
+let myLMS;
+articles.forEach((article) => {
+  myLMS = new PostArticle(article);
+})
+myLMS.addPost();
